@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Novichkov. All rights reserved.
 //
 
-/*
+
 
 import UIKit
 
@@ -22,13 +22,6 @@ class PostTableViewCell: UITableViewCell {
             viewsLabel.text = "Views: " + String(post.views)
         }
     }
-    /*
-     let author: String
-     var description: String? = nil
-     let image: UIImage
-     let likes: Int
-     let views: Int
-     */
     
     private var authorLabel: UILabel = {
         let label = UILabel()
@@ -44,6 +37,7 @@ class PostTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .systemGray
         label.numberOfLines = 0
+        //label.contentMode = .scaleAspectFit
         label.toAutoLayout()
         return label
     }()
@@ -52,6 +46,8 @@ class PostTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .black
+        imageView.toAutoLayout()
+
         return imageView
     }()
     
@@ -59,6 +55,7 @@ class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
+        label.toAutoLayout()
         return label
     }()
     
@@ -66,19 +63,20 @@ class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
+        label.toAutoLayout()
         return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setupLayout()
+        setupLayoutCell()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        setupLayout()
+        setupLayoutCell()
     }
     
     func configure(post: UserPost) {
@@ -93,7 +91,8 @@ class PostTableViewCell: UITableViewCell {
 
 // MARK: Layout
 private extension PostTableViewCell {
-    func setupLayout() {
+    
+    func setupLayoutCell() {
         contentView.addSubview(authorLabel)
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(postImageView)
@@ -101,6 +100,7 @@ private extension PostTableViewCell {
         contentView.addSubview(viewsLabel)
         
         let constraints = [
+            
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             
@@ -109,9 +109,18 @@ private extension PostTableViewCell {
             postImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
             postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             
+            descriptionLabel.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+            likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            
+            viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+            viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            
         ]
         NSLayoutConstraint.activate(constraints)
     }
 }
 
- */

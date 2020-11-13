@@ -101,7 +101,6 @@ class ProfileTableHeaderView: UIView {
         }
  
         func setupViews() {
-            backgroundColor = .yellow
             addSubview(nicknameLabel)
             addSubview(statusTextField)
             addSubview(showStatusButton)
@@ -110,25 +109,25 @@ class ProfileTableHeaderView: UIView {
 
             let constraints = [
                 
-                nicknameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+                nicknameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
                 nicknameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 16),
                 
-                avatarImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-                avatarImage.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                avatarImage.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+                avatarImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 avatarImage.widthAnchor.constraint(equalToConstant: 100),
                 avatarImage.heightAnchor.constraint(equalToConstant: 100),
                 
                 statusTextField.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 16),
-                statusTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+                statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 statusTextField.bottomAnchor.constraint(equalTo: changeTextField.topAnchor, constant: -8),
                 
                 changeTextField.leadingAnchor.constraint(equalTo: statusTextField.leadingAnchor),
                 changeTextField.heightAnchor.constraint(equalToConstant: 40),
-                changeTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+                changeTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 changeTextField.bottomAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: -8),
                 
-                showStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-                showStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+                showStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+                showStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 showStatusButton.heightAnchor.constraint(equalToConstant: 50),
                 showStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
             ]
