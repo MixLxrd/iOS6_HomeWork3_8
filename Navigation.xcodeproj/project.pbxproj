@@ -17,6 +17,11 @@
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
 		060782CA250CEE7200A87020 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C9250CEE7200A87020 /* Post.swift */; };
 		2C00E282252CE5D4002936D0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C00E281252CE5D4002936D0 /* ProfileViewController.swift */; };
+		2C9E32C925613FF500D122F1 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9E32C825613FF500D122F1 /* PhotosTableViewCell.swift */; };
+		2C9E32CC256140CB00D122F1 /* UIView + RoundedShadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9E32CB256140CB00D122F1 /* UIView + RoundedShadows.swift */; };
+		2C9E32CF256141A400D122F1 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9E32CE256141A400D122F1 /* Photos.swift */; };
+		2C9E32D22561590200D122F1 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9E32D12561590200D122F1 /* PhotosViewController.swift */; };
+		2C9E32DC25615FF600D122F1 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9E32DB25615FF600D122F1 /* PhotosCollectionViewCell.swift */; };
 		2CCD0EE5255483FB0084E888 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0EE4255483FB0084E888 /* PostTableViewCell.swift */; };
 		2CCD0EE925548D1C0084E888 /* PostTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0EE825548D1C0084E888 /* PostTableViewAdapter.swift */; };
 		2CCF3BA3253B7C4700F36903 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCF3BA2253B7C4700F36903 /* LogInViewController.swift */; };
@@ -39,6 +44,11 @@
 		060782C7250CEE5D00A87020 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		060782C9250CEE7200A87020 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		2C00E281252CE5D4002936D0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2C9E32C825613FF500D122F1 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		2C9E32CB256140CB00D122F1 /* UIView + RoundedShadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + RoundedShadows.swift"; sourceTree = "<group>"; };
+		2C9E32CE256141A400D122F1 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		2C9E32D12561590200D122F1 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		2C9E32DB25615FF600D122F1 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CCD0EE4255483FB0084E888 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		2CCD0EE825548D1C0084E888 /* PostTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewAdapter.swift; sourceTree = "<group>"; };
 		2CCF3BA2253B7C4700F36903 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +110,10 @@
 				2CEC959C2553330C007DC7D1 /* ProfileTableHeaderView.swift */,
 				2C00E281252CE5D4002936D0 /* ProfileViewController.swift */,
 				2CCF3BA2253B7C4700F36903 /* LogInViewController.swift */,
+				2C9E32C825613FF500D122F1 /* PhotosTableViewCell.swift */,
+				2C9E32CE256141A400D122F1 /* Photos.swift */,
+				2C9E32D12561590200D122F1 /* PhotosViewController.swift */,
+				2C9E32DB25615FF600D122F1 /* PhotosCollectionViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -120,6 +134,7 @@
 			children = (
 				2CCF3BA7253B816300F36903 /* UIView+Autolayout.swift */,
 				2CCF3BCC253F7C5500F36903 /* UIImage+alpha.swift */,
+				2C9E32CB256140CB00D122F1 /* UIView + RoundedShadows.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -195,19 +210,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C9E32C925613FF500D122F1 /* PhotosTableViewCell.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				2CEC959D2553330C007DC7D1 /* ProfileTableHeaderView.swift in Sources */,
 				2CCD0EE5255483FB0084E888 /* PostTableViewCell.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				2CCF3BA3253B7C4700F36903 /* LogInViewController.swift in Sources */,
+				2C9E32CC256140CB00D122F1 /* UIView + RoundedShadows.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				060782CA250CEE7200A87020 /* Post.swift in Sources */,
+				2C9E32D22561590200D122F1 /* PhotosViewController.swift in Sources */,
 				2CEC959A25532F61007DC7D1 /* UserPosts.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				2CCF3BA8253B816300F36903 /* UIView+Autolayout.swift in Sources */,
+				2C9E32CF256141A400D122F1 /* Photos.swift in Sources */,
 				2CCF3BCD253F7C5500F36903 /* UIImage+alpha.swift in Sources */,
 				2CCD0EE925548D1C0084E888 /* PostTableViewAdapter.swift in Sources */,
 				2C00E282252CE5D4002936D0 /* ProfileViewController.swift in Sources */,
+				2C9E32DC25615FF600D122F1 /* PhotosCollectionViewCell.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
