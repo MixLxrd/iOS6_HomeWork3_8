@@ -65,19 +65,23 @@ class ProfileTableHeaderView: UIView {
             return button
         }()
         
-        private lazy var avatarImage: UIImageView = {
-            var image = UIImageView()
+        lazy var avatarImage: UIImageView = {
+            let image = UIImageView()
             image.layer.borderWidth = 3
             image.layer.cornerRadius = 50
             image.clipsToBounds = true
             image.layer.borderColor = UIColor.white.cgColor
             image.image = #imageLiteral(resourceName: "waiter")
-
+            image.contentMode = .scaleToFill
+            
             image.toAutoLayout()
             return image
         }()
 
         
+    
+        
+    
         @objc private func showStatusButtonPressed() {
             statusTextField.text = changeTextField.text
             //print("You tap the button. I'm do nothing")
@@ -90,12 +94,18 @@ class ProfileTableHeaderView: UIView {
         override init(frame: CGRect) {
             super.init(frame: frame)
             setupViews()
+            
+
+            
         }
         
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
         
+
+    
+    
         override func layoutSubviews() {
             super.layoutSubviews()
         }
@@ -111,11 +121,13 @@ class ProfileTableHeaderView: UIView {
                 
                 nicknameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
                 nicknameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 16),
+                nicknameLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -30),
                 
                 avatarImage.topAnchor.constraint(equalTo: topAnchor, constant: 16),
                 avatarImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 avatarImage.widthAnchor.constraint(equalToConstant: 100),
                 avatarImage.heightAnchor.constraint(equalToConstant: 100),
+                
                 
                 statusTextField.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 16),
                 statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
@@ -126,14 +138,19 @@ class ProfileTableHeaderView: UIView {
                 changeTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 changeTextField.bottomAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: -8),
                 
+                
                 showStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
                 showStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 showStatusButton.heightAnchor.constraint(equalToConstant: 50),
-                showStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+                showStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
             ]
             
             NSLayoutConstraint.activate(constraints)
 
+            
+
+            
         }
     
 }
+

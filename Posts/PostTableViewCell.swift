@@ -117,7 +117,8 @@ private extension PostTableViewCell {
             likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-            viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
             
         ]
         NSLayoutConstraint.activate(constraints)

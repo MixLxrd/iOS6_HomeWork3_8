@@ -23,14 +23,25 @@ class LogInViewController: UIViewController {
         
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-        textField.layer.cornerRadius = 10
+        //textField.layer.cornerRadius = 10
         
-        textField.text = "Email or phone"
+        textField.roundCornerWithRadius(10, top: true, bottom: false, shadowEnabled: false)
+        
+        textField.leftView = UIView(frame: CGRect(x: textField.frame.minX, y: textField.frame.minY, width: 16, height: textField.frame.height))
+        textField.leftViewMode = .always
+        textField.rightView = UIView(frame: CGRect(x: textField.frame.minX, y: textField.frame.minY, width: 16, height: textField.frame.height))
+        textField.rightViewMode = .always
+        
+        
+        //textField.text = "Email or phone"
         textField.backgroundColor = .systemGray6
         textField.textColor = .black
-        textField.font = .systemFont(ofSize: 16)
-        textField.tintColor = .blue
+        textField.font = UIFont.systemFont(ofSize: 16)
+        
+        textField.tintColor = UIColor.init(named: "Color")
         textField.autocapitalizationType = .none
+        
+        textField.placeholder = "Email of phone"
         
         textField.toAutoLayout()
         return textField
@@ -41,7 +52,10 @@ class LogInViewController: UIViewController {
         
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-        textField.layer.cornerRadius = 10
+        //textField.layer.cornerRadius = 10
+        
+        textField.roundCornerWithRadius(10, top: false, bottom: true, shadowEnabled: false)
+        textField.placeholder = "Password"
         
         textField.backgroundColor = .systemGray6
         textField.textColor = .black
@@ -50,6 +64,10 @@ class LogInViewController: UIViewController {
         textField.autocapitalizationType = .none
         
         textField.isSecureTextEntry = true
+        textField.leftView = UIView(frame: CGRect(x: textField.frame.minX, y: textField.frame.minY, width: 16, height: textField.frame.height))
+        textField.leftViewMode = .always
+        textField.rightView = UIView(frame: CGRect(x: textField.frame.minX, y: textField.frame.minY, width: 16, height: textField.frame.height))
+        textField.rightViewMode = .always
         
         textField.toAutoLayout()
         return textField

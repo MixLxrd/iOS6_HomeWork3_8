@@ -15,7 +15,131 @@ class ProfileViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    private lazy var fullSizeAvatar: UIImageView = {
+        let image = UIImageView()
+        image.image = #imageLiteral(resourceName: "waiter")
+        image.contentMode = .scaleToFill
+        image.alpha = 0
+        
+        let tapAvatar = UITapGestureRecognizer(target: self, action: #selector(tapDown))
+        image.addGestureRecognizer(tapAvatar)
+        image.isUserInteractionEnabled = true
+        
+        tapAvatar.delegate = self
+        
+        image.toAutoLayout()
+        return image
+    }()
+
+    private lazy var backgroundAvatar: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0
+        view.toAutoLayout()
+        return view
+    }()
     
+    private let imageView: UIImageView = {
+        let image = UIImageView()
+        image.layer.borderWidth = 3
+        image.layer.cornerRadius = 50
+        image.clipsToBounds = true
+        image.layer.borderColor = UIColor.white.cgColor
+        image.image = #imageLiteral(resourceName: "waiter")
+        image.contentMode = .scaleToFill
+        return image
+    }()
+    
+    @objc func tapUp() {
+        print("avatar appear")
+        
+        
+        
+        let someOffset = profileHeaderView.avatarImage.frame
+        print(someOffset)
+        
+        
+        view.addSubview(imageView)
+        
+        imageView.frame = .init(x: someOffset.minX, y: someOffset.minY+20, width: someOffset.width, height: someOffset.height)
+        
+        exampleLayout()
+        
+        let newOffeset = fullSizeAvatar.frame
+        print(newOffeset)
+        UIView.animate(withDuration: 0.5) {
+            
+            //self.view.layoutIfNeeded()
+            //self.exampleLayout()
+            //self.newLayout()
+            self.backgroundAvatar.alpha = 0.5
+            self.fullSizeAvatar.alpha = 1
+            
+            //imageView.contentMode = .scaleAspectFit
+            self.imageView.frame = newOffeset
+            /*
+             lazy var avatarImage: UIImageView = {
+             let image = UIImageView()
+             image.layer.borderWidth = 3
+             image.layer.cornerRadius = 50
+             image.clipsToBounds = true
+             image.layer.borderColor = UIColor.white.cgColor
+             image.image = #imageLiteral(resourceName: "waiter")
+             image.contentMode = .scaleToFill
+             
+             image.toAutoLayout()
+             return image
+             }()
+             */
+            //fullsize.translatesAutoresizingMaskIntoConstraints = true
+
+            
+            
+        }
+
+        
+    }
+
+    
+    private func exampleLayout() {
+        view.addSubview(backgroundAvatar)
+        view.addSubview(fullSizeAvatar)
+        backgroundAvatar.alpha = 0
+        fullSizeAvatar.alpha = 0
+        
+        
+        let constraints = [
+            
+            
+            backgroundAvatar.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundAvatar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundAvatar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundAvatar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            
+            
+            fullSizeAvatar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fullSizeAvatar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            fullSizeAvatar.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            fullSizeAvatar.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+             
+            
+        ]
+        NSLayoutConstraint.activate(constraints)
+        
+    }
+    
+    @objc func tapDown() {
+        print("avatar disappear")
+        UIView.animate(withDuration: 0.3) {
+            //self.view.layoutIfNeeded()
+            self.fullSizeAvatar.removeFromSuperview()
+            self.backgroundAvatar.removeFromSuperview()
+            self.imageView.removeFromSuperview()
+        }
+        
+        
+    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -41,6 +165,9 @@ class ProfileViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() ) {
             self.posts = Post.userPosts
         }
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +176,7 @@ class ProfileViewController: UIViewController {
     
     
     private func setupTableView() {
-        //tableView.toAutoLayout()
+    
         view.addSubview(tableView)
         let constraints = [
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -58,28 +185,15 @@ class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
-        NSLayoutConstraint.activate(constraints)
-        //tableView.rowHeight = UITableView.automaticDimension
-
-    }
-    
-    private func setupLayout() {
-
+        let tapAvatar = UITapGestureRecognizer(target: self, action: #selector(tapUp))
+        profileHeaderView.avatarImage.addGestureRecognizer(tapAvatar)
+        profileHeaderView.avatarImage.isUserInteractionEnabled = true
         
-        profileHeaderView.toAutoLayout()
-        //view.addSubview(profileHeaderView)
-        
-        let constraints = [
-            profileHeaderView.topAnchor.constraint(equalTo: view.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220)
-             
-        ]
         
         NSLayoutConstraint.activate(constraints)
-        
+
     }
+
 
 }
 
@@ -116,10 +230,10 @@ extension ProfileViewController: UITableViewDataSource {
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 { return (UIScreen.main.bounds.width / 4 + 60) } else { return 700 }
+        if indexPath.row == 0 { return (UIScreen.main.bounds.width / 4 + 60) } else { return UITableView.automaticDimension }
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 220
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -127,5 +241,12 @@ extension ProfileViewController: UITableViewDelegate {
         if indexPath.row == 0 { let photosViewController = PhotosViewController()
             self.navigationController?.pushViewController(photosViewController, animated: true) }
         
+    }
+}
+
+
+extension ProfileViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        gestureRecognizer is UITapGestureRecognizer
     }
 }
