@@ -21,11 +21,7 @@ class ProfileViewController: UIViewController {
         image.contentMode = .scaleToFill
         image.alpha = 0
         
-        let tapAvatar = UITapGestureRecognizer(target: self, action: #selector(tapDown))
-        image.addGestureRecognizer(tapAvatar)
-        image.isUserInteractionEnabled = true
-        
-        tapAvatar.delegate = self
+
         
         image.toAutoLayout()
         return image
@@ -47,6 +43,17 @@ class ProfileViewController: UIViewController {
         image.layer.borderColor = UIColor.white.cgColor
         image.image = #imageLiteral(resourceName: "waiter")
         image.contentMode = .scaleToFill
+        return image
+    }()
+    
+    private lazy var closeImageView: UIImageView = {
+        let image = UIImageView()
+        let tapAvatar = UITapGestureRecognizer(target: self, action: #selector(tapDown))
+        image.addGestureRecognizer(tapAvatar)
+        image.isUserInteractionEnabled = true
+        tapAvatar.delegate = self
+        image.image = #imageLiteral(resourceName: "close")
+        image.toAutoLayout()
         return image
     }()
     
@@ -104,6 +111,7 @@ class ProfileViewController: UIViewController {
     private func exampleLayout() {
         view.addSubview(backgroundAvatar)
         view.addSubview(fullSizeAvatar)
+        view.addSubview(closeImageView)
         backgroundAvatar.alpha = 0
         fullSizeAvatar.alpha = 0
         
@@ -121,9 +129,12 @@ class ProfileViewController: UIViewController {
             fullSizeAvatar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             fullSizeAvatar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             fullSizeAvatar.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            fullSizeAvatar.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            fullSizeAvatar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
              
-            
+            closeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            closeImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
+            closeImageView.heightAnchor.constraint(equalToConstant: 16),
+            closeImageView.widthAnchor.constraint(equalToConstant: 16)
         ]
         NSLayoutConstraint.activate(constraints)
         
@@ -132,10 +143,12 @@ class ProfileViewController: UIViewController {
     @objc func tapDown() {
         print("avatar disappear")
         UIView.animate(withDuration: 0.3) {
-            //self.view.layoutIfNeeded()
+            
             self.fullSizeAvatar.removeFromSuperview()
             self.backgroundAvatar.removeFromSuperview()
             self.imageView.removeFromSuperview()
+            self.closeImageView.removeFromSuperview()
+            self.view.layoutIfNeeded()
         }
         
         
